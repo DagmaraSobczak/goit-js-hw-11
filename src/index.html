@@ -9,6 +9,17 @@
   </head>
   <body>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+      <button class="button" type="submit">Search</button>
+    </form>
+    <div class="gallery"></div>
+
     <include src="./partials/example.html"></include>
   </body>
 </html>
