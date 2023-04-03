@@ -125,3 +125,11 @@ function loadMoreImg() {
   fetchData(currentSearchTerm, currentPage);
 }
 loadMore.addEventListener('click', loadMoreImg);
+const { height: cardHeight } = document
+  .querySelector('.gallery')
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  bottom: cardHeight * 2,
+  behavior: 'smooth',
+});
