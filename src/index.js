@@ -37,6 +37,10 @@ async function fetchData(searchTerm, page) {
       const galleryItem = document.createElement('div');
       galleryItem.classList.add('photo-card');
 
+      const galleryLink = document.createElement('a');
+      //galleryLink.classList.add('gallery-link');
+      galleryLink.href = image.largeImageURL;
+
       const img = document.createElement('img');
       img.src = image.webformatURL;
       img.alt = image.tags;
@@ -66,7 +70,8 @@ async function fetchData(searchTerm, page) {
       info.appendChild(comments);
       info.appendChild(downloads);
 
-      galleryItem.appendChild(img);
+      galleryLink.appendChild(img);
+      galleryItem.appendChild(galleryLink);
       galleryItem.appendChild(info);
 
       gallery.appendChild(galleryItem);
@@ -84,10 +89,10 @@ async function fetchData(searchTerm, page) {
     } else {
       loadMore.style.display = 'block';
     }
-    new SimpleLightbox('.gallery a', {
+    new SimpleLightbox('.photo-card a', {
       captionsData: 'alt',
       captionDelay: 250,
-    });
+    }).refresh();
   } catch (error) {
     console.error(error);
   }
@@ -108,7 +113,7 @@ dataSubmit.addEventListener('click', event => {
   if (searchTerm !== currentSearchTerm) {
     currentPage = 1;
     currentSearchTerm = searchTerm;
-    loadMore.classList.remove('visible');
+    loadMore.style.display = 'none';
   } else {
     currentPage++;
   }
